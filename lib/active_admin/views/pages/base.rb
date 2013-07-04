@@ -46,11 +46,11 @@ module ActiveAdmin
         end
 
         def build_header
-          insert_tag view_factory.header, active_admin_namespace, current_menu
+            insert_tag view_factory.header, active_admin_namespace, current_menu
         end
 
         def build_title_bar
-          content_tag view_factory.title_bar, title, action_items_for_action
+          insert_tag view_factory.title_bar, title, action_items_for_action
         end
 
 

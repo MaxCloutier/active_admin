@@ -1,5 +1,5 @@
 // ----------------------------------- Header
-#header {
+.header {
   @include primary-gradient;
   @include shadow;
   @include text-shadow(#000);
@@ -37,7 +37,7 @@
     }
   }
 
-  a, a:link { color: #cdcdcd; }
+  &.header a, &.header a:link { color: #cdcdcd; }
 
   .header-item {
     top: 2px;
@@ -51,6 +51,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    width: 100%;
 
     & > li {
       display: inline-block;
@@ -128,11 +129,7 @@
 
   }
 
-  #tabs {
-    width: 100%;
-  }
-
-  #utility_nav {
+  .utility_nav {
     color: #aaa;
     display: table-cell;
     white-space: nowrap;
