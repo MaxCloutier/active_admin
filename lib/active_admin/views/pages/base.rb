@@ -46,11 +46,7 @@ module ActiveAdmin
         end
 
         def build_header
-          insert_tag :section do 
-            view_factory.header
-            active_admin_namespace
-            current_menu
-          end
+          insert_tag view_factory.header, active_admin_namespace, current_menu
         end
 
         def build_title_bar
