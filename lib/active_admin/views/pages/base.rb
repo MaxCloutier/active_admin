@@ -50,7 +50,7 @@ module ActiveAdmin
         end
 
         def build_title_bar
-          insert_tag view_factory.title_bar, title, action_items_for_action
+          content_tag view_factory.title_bar, title, action_items_for_action
         end
 
 
