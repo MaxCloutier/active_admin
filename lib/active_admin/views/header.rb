@@ -3,7 +3,6 @@ module ActiveAdmin
     class Header < Component
 
       def build(namespace, menu)
-        super(:id => "header")
 
         @namespace = namespace
         @menu = menu
