@@ -5,21 +5,23 @@ module ActiveAdmin
       def build(title, action_items)
         @title = title
         @action_items = action_items
-        build_titlebar_left
-        build_titlebar_right
+        section do
+          build_titlebar_left
+          build_titlebar_right
+        end
       end
 
       private
 
       def build_titlebar_left
-        section :id => "titlebar_left" do
+        div :class => "titlebar_left" do
           build_breadcrumb
           build_title_tag
         end
       end
 
       def build_titlebar_right
-        section :id => "titlebar_right" do
+        div :class => "titlebar_right" do
           build_action_items
         end
       end
