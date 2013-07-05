@@ -8,7 +8,7 @@
     popover = void 0;
     beforeEach(function() {
       $wrapper = $(inject({
-        id: "wrapper"
+        class: "wrapper"
       }));
       $button = $(inject({
         el: "a",
@@ -80,7 +80,7 @@
       return describe("when user clicks outside", function() {
         beforeEach(function() {
           $button.popover("open");
-          return $("#wrapper").trigger("click");
+          return $(".wrapper").trigger("click");
         });
         return it("should close", function() {
           return expect($popover).toBeHidden();

@@ -66,7 +66,7 @@ describe "AA.Popover", ->
     describe "when user clicks outside", ->
       beforeEach ->
         $button.popover "open"
-        $("#wrapper").trigger "click"
+        $(".wrapper").trigger "click"
 
       it "should close", ->
         expect($popover).toBeHidden()

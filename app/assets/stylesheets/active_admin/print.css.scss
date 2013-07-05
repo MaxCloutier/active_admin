@@ -37,7 +37,7 @@ h3 {
 }
 
 // Header
-#header {
+.header {
   float: left;
 
   #tabs, .tabs, #utility_nav {
@@ -53,7 +53,7 @@ h3 {
   display: none;
 }
 
-#title_bar {
+.title_bar {
   float: right;
 
   h2 {
@@ -61,13 +61,13 @@ h3 {
     margin: 0;
   }
 
-  .breadcrumb, #titlebar_right {
+  .breadcrumb, .titlebar_right {
     display: none;
   }
 }
 
 // Content
-#active_admin_content {
+.active_admin_content {
   border-top: thick solid black;
   clear: both;
   margin-top: 2em;
@@ -75,7 +75,7 @@ h3 {
 }
 
 // Footer
-#footer {
+.footer {
   display: none;
 }
 

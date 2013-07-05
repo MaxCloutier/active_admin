@@ -18,7 +18,7 @@ module ActiveAdmin
       #
       def build(menu, options = {})
         @menu = menu
-        super(default_options.merge(options))
+        super(options)
         build_menu
       end
 
@@ -52,10 +52,6 @@ module ActiveAdmin
             end
           end
         end
-      end
-
-      def default_options
-        { :id => "tabs" }
       end
     end
   end

@@ -23,13 +23,13 @@
         <%= content_tag :div, message, :class => "flash flash_#{type}" %>
       <% end %>
     <% end %>
-    <div id="active_admin_content">
+    <main class="active_admin_content">
       <%= yield %>
-    </div>
+    </main>
   </div>
-  <div id="footer">
+  <footer class="footer">
     <%= yield :footer %>
-  </div>
+  </footer>
 </div>
 </body>
 </html>

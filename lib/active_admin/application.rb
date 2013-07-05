@@ -219,7 +219,8 @@ module ActiveAdmin
     def register_default_assets
       register_stylesheet 'active_admin.css',       media: 'screen'
       register_stylesheet 'active_admin/print.css', media: 'print'
-
+      
+      register_javascript 'active_admin/base.js'
     end
 
     # Since the default load path, app/admin, is alphabetically before app/models, we have

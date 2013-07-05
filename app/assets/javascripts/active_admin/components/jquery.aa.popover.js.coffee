@@ -9,7 +9,7 @@ window.AA.Popover = class AA.Popover
       fadeInDuration: 20,
       fadeOutDuration: 100,
       autoOpen: true,
-      pageWrapperElement: "#wrapper",
+      pageWrapperElement: ".wrapper",
       onClickActionItemCallback: null
     }
 
