@@ -1,4 +1,25 @@
 fr:
+  formtastic:
+    :yes: 'Oui'
+    :no: 'Non'
+    :create: 'Créer un %{model}'
+    :update: 'Mettre à jour %{model}'
+    :submit: 'Soumettre %{model}'
+    :cancel: 'Annuler %{model}'
+    :reset: 'Réinitialiser %{model}'
+    :required: 'Requis'
+  time:
+    formats:
+      default: "%d / %m / %Y"
+      short: "%d/%m/%Y"
+      long: "%d / %m / %Y"
+  devise:
+    sessions:
+      admin_user:
+        signed_in: "Connecté avec succès"
+    failure:
+      admin_user:
+        unauthenticated: ""
   active_admin:
     dashboard: "Tableau de Bord"
     dashboard_welcome:
@@ -64,9 +85,11 @@ fr:
     comments:
       body: "Corps"
       author: "Auteur"
+      author_type: "Type d'autheur"
       title: "Commentaire"
       add: "Ajouter un commentaire"
       resource: "Ressource"
+      resource_type: "Type de resource"
       no_comments_yet: "Aucun commentaire actuellement"
       title_content: "Commentaires (%{count})"
       errors:

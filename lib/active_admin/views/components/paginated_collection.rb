@@ -61,7 +61,7 @@ module ActiveAdmin
       protected
 
       def build_pagination_with_formats(options)
-        div :id => "index_footer" do
+        
           build_pagination
           div(page_entries_info(options).html_safe, :class => "pagination_information")
 
@@ -71,7 +71,6 @@ module ActiveAdmin
             build_download_format_links unless @download_links == false
           end
 
-        end
       end
 
       def build_pagination

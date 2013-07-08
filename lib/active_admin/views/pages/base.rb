@@ -40,8 +40,8 @@ module ActiveAdmin
               build_header
               build_title_bar
               build_page_content
-              build_footer
             end
+            build_footer
           end
         end
 

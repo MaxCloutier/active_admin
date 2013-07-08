@@ -3,8 +3,22 @@ require 'active_admin/helpers/settings'
 
 module ActiveAdmin
   class Application
-    include Settings
 
+
+    include Settings
+    ActiveAdmin::Engine.config.before_configuration do
+      I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+      I18n.locale = :fr
+      I18n.default_locale = :fr
+      ActiveAdmin::Engine.config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+      ActiveAdmin::Engine.config.i18n.locale = :fr
+      # bypasses rails bug with i18n in production\
+      I18n.reload!
+      ActiveAdmin::Engine.config.i18n.reload!
+    end
+
+    ActiveAdmin::Engine.config.i18n.locale = :fr
+    ActiveAdmin::Engine.config.i18n.default_locale = :fr
     # Adds settings to both the Application and the Namespace instance
     # so that they can be configured independantly.
     def self.inheritable_setting(name, default)

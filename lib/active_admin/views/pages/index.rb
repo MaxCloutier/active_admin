@@ -143,9 +143,7 @@ module ActiveAdmin
                                            :entries_name   => active_admin_config.plural_resource_label(:count => collection_size),
                                            :download_links => download_links,
                                            :paginator      => paginator) do
-            div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
-            end
           end
         end
 
