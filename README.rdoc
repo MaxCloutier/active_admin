@@ -43,9 +43,15 @@ https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
 == Getting Started
 
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
-on Rails 3 application. To install, simply add the following to your Gemfile:
+on Rails 4 application. To install, simply add the following to your Gemfile:
 
-  gem 'activeadmin'
+  gem 'devise',              github: 'plataformatec/devise'
+  gem 'responders',          github: 'plataformatec/responders'
+  gem 'inherited_resources', github: 'josevalim/inherited_resources'
+  gem 'ransack',             github: 'ernie/ransack', branch: 'rails-4'
+  # to use the ixmedia template use the ixmedia branch for activeadmin
+  gem 'activeadmin',         github: 'MaxCloutier', branch: 'html5'
+  gem 'formtastic',          github: 'justinfrench/formtastic'
 
 After updating your bundle, run the installer
 
@@ -53,6 +59,31 @@ After updating your bundle, run the installer
 
 The installer creates an initializer used for configuring defaults used by Active Admin as well
 as a new folder at <tt>app/admin</tt> to put all your admin configurations.
+
+Add this to the [project]/config/initializers/active_admin.rb so the create/edit methods work in rails 4
+
+  ActiveAdmin::ResourceController.class_eval do
+    # Allow ActiveAdmin admins to freely mass-assign when using strong_parameters
+    def resource_params
+      [(params[resource_request_name] || params[resource_instance_name]).try(:permit!) || {}]
+    end
+  end
+
+To change the translation add this to lib/active_admin/application.rb
+
+  config.before_configuration do
+    I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+    I18n.locale = :fr
+    I18n.default_locale = :fr
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.locale = :fr
+    # bypasses rails bug with i18n in production\
+    I18n.reload!
+    config.i18n.reload!
+  end
+
+  config.i18n.locale = :fr
+  config.i18n.default_locale = :fr
 
 Migrate your db and start the server:
 
