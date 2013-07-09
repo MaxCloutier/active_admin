@@ -34,12 +34,37 @@ body.active_admin {
     @import "active_admin/structure/title_bar";
 }
 
+html {
+  height: 100%;
+}
+
 body.active_admin {
   @include sans-family;
+
+  height: 100%;
   line-height: 150%;
   font-size: 72%;
   background: #fff;
   margin: 0;
   padding: 0;
   color: $text-color;
+}
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
 }

@@ -1,6 +1,14 @@
 .wrapper {
   display: table;
+  min-height: 100%;
+  margin-bottom: -50px;
   width: 100%;
+}
+
+.wrapper:after {
+  content: "";
+  display: block;
+  height: 50px;
 }
 
 .active_admin_content {
