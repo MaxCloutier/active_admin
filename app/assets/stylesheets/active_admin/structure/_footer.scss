@@ -1,7 +1,6 @@
 .footer {
   background: #000;
   height: 50px;
-  padding: 0 10px;
   font-size: 0.8em;
   clear: both;
   box-shadow: 0 0 3px #000;
@@ -9,6 +8,9 @@
   -webkit-box-shadow: 0 0 3px #000;
   -moz-box-shadow: 0 0 3px #000;
   -o-box-shadow: 0 0 3px #000;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   .logo-ix {
     background: url(active_admin/ixmedia.png) no-repeat;
@@ -22,7 +24,7 @@
     color: #fff;
     display: inline-block;
     float: right;
-    margin-top: 20px;
+    margin: 20px 10px 0 0;
     padding-top: 10px;
 
     a {
