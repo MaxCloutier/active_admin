@@ -147,6 +147,7 @@ module ActiveAdmin
                                            :pagination_total => pagination_total) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
+            end
           end
         end
 
