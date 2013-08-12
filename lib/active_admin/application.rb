@@ -6,7 +6,9 @@ module ActiveAdmin
 
 
     include Settings
-
+    include Settings::Inheritance
+    settings_inherited_by Namespace
+    
     ActiveAdmin::Engine.config.before_configuration do
       I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
       I18n.locale = :fr
