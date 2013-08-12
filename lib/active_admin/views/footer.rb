@@ -2,8 +2,12 @@ module ActiveAdmin
   module Views
     class Footer < Component
 
+      def tag_name
+        'footer'
+      end
+
       def build
-        super :id => "footer"
+        super :class => "footer"
         powered_by_message
       end
 

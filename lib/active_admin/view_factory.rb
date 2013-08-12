@@ -10,6 +10,7 @@ module ActiveAdmin
               :action_items         => ActiveAdmin::Views::ActionItems,
               :title_bar            => ActiveAdmin::Views::TitleBar,
               :header               => ActiveAdmin::Views::Header,
+              :nav_menu             => ActiveAdmin::Views::NavMenu,
               :footer               => ActiveAdmin::Views::Footer,
               :index_scopes         => ActiveAdmin::Views::Scopes,
               :blank_slate          => ActiveAdmin::Views::BlankSlate,
