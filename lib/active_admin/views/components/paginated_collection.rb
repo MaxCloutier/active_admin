@@ -69,7 +69,6 @@ module ActiveAdmin
           else
             build_download_format_links unless @download_links == false
           end
-
       end
 
       def build_pagination

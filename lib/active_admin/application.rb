@@ -6,6 +6,7 @@ module ActiveAdmin
 
 
     include Settings
+
     ActiveAdmin::Engine.config.before_configuration do
       I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
       I18n.locale = :fr
@@ -38,8 +39,10 @@ module ActiveAdmin
     #
     setting :default_namespace, :admin
 
-    # A hash of all the registered namespaces
-    setting :namespaces, {}
+    attr_reader :namespaces
+    def initialize
+      @namespaces = {}
+    end
 
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
