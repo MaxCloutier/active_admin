@@ -43,6 +43,7 @@ de:
       one: "Zeige <b>1</b> %{model}"
       one_page: "Zeige <b>alle %{n}</b> %{model}"
       multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
+      multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
       entry:
         one: "Eintrag"
         other: "Einträge"
@@ -62,10 +63,12 @@ de:
       labels:
         destroy: "Lösche"
     comments:
+      resource_type: "Res­sour­cen-Typ"
+      author_type: "Autor-Typ"
       body: "Inhalt"
       author: "Autor"
       title: "Kommentar"
-      resource: "Resource"
+      resource: "Res­sour­ce"
       add: "Kommentar hinzufügen"
       no_comments_yet: "Es gibt noch keine Kommentare."
       title_content: "Kommentare (%{count})"

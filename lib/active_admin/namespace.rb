@@ -1,4 +1,3 @@
-require 'active_admin/helpers/settings'
 require 'active_admin/resource_collection'
 
 module ActiveAdmin
@@ -26,8 +25,6 @@ module ActiveAdmin
   # resource will be accessible from "/posts" and the controller will be PostsController.
   #
   class Namespace
-    include Settings
-
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
     attr_reader :application, :resources, :name, :menus
@@ -162,7 +159,7 @@ module ActiveAdmin
       return if @menus.exists? :utility_navigation
       @menus.menu :utility_navigation do |menu|
         menu.add  :label  => proc{ display_name current_active_admin_user },
-                  :url    => '#',
+                  :url    => proc{ url_for [active_admin_namespace.name, current_active_admin_user] rescue '#' },
                   :id     => 'current_user',
                   :if     => proc{ current_active_admin_user? }
 
