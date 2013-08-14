@@ -78,12 +78,12 @@ module ActiveAdmin
         end
 
         def build_main_content_wrapper
-          #div :class => "main_content_wrapper" do
+          div :class => "main_content_wrapper" do
             div :class => "main_content" do
               build_action_items
               main_content
             end
-          #end
+          end
         end
 
         def build_action_items
