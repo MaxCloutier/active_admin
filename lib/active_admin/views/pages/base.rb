@@ -56,10 +56,11 @@ module ActiveAdmin
 
         def build_page_content
           build_flash_messages
-          div :class => "clearfix active_admin_content " + (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
+          # div :class => "clearfix active_admin_content " + (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
+          #div :class => "clearfix active_admin_content" do
+            build_nav_menu
             build_main_content_wrapper
-            build_sidebar unless skip_sidebar?
-          end
+          #end
         end
 
         def build_flash_messages
@@ -71,11 +72,15 @@ module ActiveAdmin
         end
 
         def build_main_content_wrapper
-          div :class => "main_content_wrapper" do
+          #div :class => "main_content_wrapper" do
             div :class => "main_content" do
               main_content
             end
-          end
+          #end
+        end
+
+        def build_nav_menu
+            insert_tag view_factory.nav_menu, active_admin_namespace, current_menu
         end
 
         def main_content
@@ -92,13 +97,13 @@ module ActiveAdmin
         end
 
         # Returns the sidebar sections to render for the current action
-        def sidebar_sections_for_action
-          if active_admin_config && active_admin_config.sidebar_sections?
-            active_admin_config.sidebar_sections_for(params[:action], self)
-          else
-            []
-          end
-        end
+        # def sidebar_sections_for_action
+        #   if active_admin_config && active_admin_config.sidebar_sections?
+        #     active_admin_config.sidebar_sections_for(params[:action], self)
+        #   else
+        #     []
+        #   end
+        # end
 
         def action_items_for_action
           if active_admin_config && active_admin_config.action_items?
@@ -109,13 +114,13 @@ module ActiveAdmin
         end
 
         # Renders the sidebar
-        def build_sidebar
-          div :class => "sidebar" do
-            sidebar_sections_for_action.collect do |section|
-              sidebar_section(section)
-            end
-          end
-        end
+        # def build_sidebar
+        #   div :class => "sidebar" do
+        #     sidebar_sections_for_action.collect do |section|
+        #       sidebar_section(section)
+        #     end
+        #   end
+        # end
 
         def skip_sidebar?
           sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
