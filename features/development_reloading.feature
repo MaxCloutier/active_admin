@@ -11,13 +11,7 @@ Feature: Development Reloading
 
     When "app/admin/posts.rb" contains:
     """
-      ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category, :author, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
-      end
+      ActiveAdmin.register Post
     """
     When I am logged in with capybara
     Then I should see a menu item for "Posts"

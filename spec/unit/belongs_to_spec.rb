@@ -28,9 +28,9 @@ describe ActiveAdmin::Resource::BelongsTo do
 
     context "when the resource has not been registered" do
       it "should raise a ActiveAdmin::BelongsTo::TargetNotFound" do
-        expect {
+        lambda {
           belongs_to.target
-        }.to raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
+        }.should raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
       end
     end
   end

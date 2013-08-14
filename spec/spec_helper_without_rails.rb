@@ -7,5 +7,3 @@ Bundler.setup
 
 require 'detect_rails_version'
 ENV['RAILS'] = detect_rails_version
-
-require 'coveralls' and Coveralls.wear_merged! if ENV['TRAVIS']

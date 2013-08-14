@@ -91,7 +91,7 @@ module ActiveAdmin
 
       def normalize_id(id)
         case id
-        when String, Symbol, ActiveModel::Name
+        when String, Symbol
           id.to_s.downcase.gsub ' ', '_'
         when ActiveAdmin::Resource::Name
           id.param_key

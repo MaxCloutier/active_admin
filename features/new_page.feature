@@ -8,13 +8,7 @@ Feature: New Page
     And I am logged in
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category_id, :author_id, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
-      end
+      ActiveAdmin.register Post
     """
     When I am on the index page for posts
 
@@ -35,11 +29,6 @@ Feature: New Page
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category_id, :author_id, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
         form do |f|
           f.inputs "Your Post" do
             f.input :title
@@ -74,11 +63,6 @@ Feature: New Page
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category_id, :author_id, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
         form :partial => "form"
       end
     """
@@ -94,11 +78,6 @@ Feature: New Page
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category_id, :author_id, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
         form do |f|
           f.inputs "Your Post" do
             if current_admin_user && false

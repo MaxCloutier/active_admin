@@ -1,3 +1,5 @@
+require 'active_support/concern'
+
 module ActiveAdmin
 
   # Adds a class method to a class to create settings with default values.
@@ -16,10 +18,7 @@ module ActiveAdmin
   #   conf.site_title #=> "Override Default"
   #
   module Settings
-
-    def self.included(base)
-      base.extend ClassMethods
-    end
+    extend ActiveSupport::Concern
 
     def read_default_setting(name)
       default_settings[name]
@@ -35,9 +34,10 @@ module ActiveAdmin
 
       def setting(name, default)
         default_settings[name] = default
-        attr_writer name
+        attr_accessor(name)
 
-        # Creates a reader that will grab the default if no value has been set.
+        # Create an accessor that grabs from the defaults
+        # if @name has not been set yet
         class_eval <<-EOC, __FILE__, __LINE__ + 1
           def #{name}
             if instance_variable_defined? :@#{name}
@@ -50,10 +50,10 @@ module ActiveAdmin
       end
 
       def deprecated_setting(name, default, message = nil)
+        message = message || "The #{name} setting is deprecated and will be removed."
         setting(name, default)
 
-        message ||= "The #{name} setting is deprecated and will be removed."
-        ActiveAdmin::Deprecation.deprecate self,     name,    message
+        ActiveAdmin::Deprecation.deprecate self, name, message
         ActiveAdmin::Deprecation.deprecate self, :"#{name}=", message
       end
 
@@ -62,47 +62,5 @@ module ActiveAdmin
       end
 
     end
-
-
-    # Allows you to define child classes that should receive the same
-    # settings, as well as the same default values.
-    #
-    # Example from the codebase:
-    #
-    #   class Application
-    #     include Settings
-    #     include Settings::Inheritance
-    #
-    #     settings_inherited_by :Namespace
-    #
-    #     inheritable_setting :root_to, 'dashboard#index'
-    #   end
-    #
-    module Inheritance
-
-      def self.included(base)
-        base.extend ClassMethods
-      end
-
-      module ClassMethods
-
-        def settings_inherited_by(heir)
-          (@setting_heirs ||= []) << heir
-          heir.send :include, ActiveAdmin::Settings
-        end
-
-        def inheritable_setting(name, default)
-          setting name, default
-          @setting_heirs.each{ |c| c.setting name, default }
-        end
-
-        def deprecated_inheritable_setting(name, default)
-          deprecated_setting name, default
-          @setting_heirs.each{ |c| c.deprecated_setting name, default }
-        end
-
-      end
-    end
-
   end
 end

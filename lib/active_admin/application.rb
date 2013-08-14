@@ -6,9 +6,6 @@ module ActiveAdmin
 
 
     include Settings
-    include Settings::Inheritance
-    settings_inherited_by Namespace
-    
     ActiveAdmin::Engine.config.before_configuration do
       I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
       I18n.locale = :fr
@@ -41,10 +38,8 @@ module ActiveAdmin
     #
     setting :default_namespace, :admin
 
-    attr_reader :namespaces
-    def initialize
-      @namespaces = {}
-    end
+    # A hash of all the registered namespaces
+    setting :namespaces, {}
 
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
@@ -62,9 +57,6 @@ module ActiveAdmin
 
     # Set the site title image displayed in the main layout (has precendence over :site_title)
     inheritable_setting :site_title_image, ""
-    
-    # Set a favicon
-    inheritable_setting :favicon, false
 
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory

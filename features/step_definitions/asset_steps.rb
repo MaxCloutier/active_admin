@@ -9,7 +9,3 @@ end
 Then /^I should see the js file "([^"]*)"$/ do |path|
   page.should have_xpath("//script[contains(@src, /javascripts/#{path})]")
 end
-
-Then /^I should see the favicon "([^"]*)"$/ do |path|
-  page.should have_xpath("//link[contains(@href, \"#{path}\")]")
-end

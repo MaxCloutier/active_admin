@@ -130,31 +130,42 @@ module ActiveAdmin
       "ActiveAdmin::Inputs::#{as.to_s.camelize}Input"
     end
 
-    def input_class(as)
-      @input_classes_cache ||= {}
-      @input_classes_cache[as] ||= begin
-        begin
-          custom_input_class_name(as).constantize
-        rescue NameError
-          begin
-            active_admin_input_class_name(as).constantize
-          rescue NameError
-            standard_input_class_name(as).constantize
-          end
-        end
-      rescue NameError
-        raise Formtastic::UnknownInputError, "Unable to find input class for #{as}"
+    # Overrides Formtastic's version to include ActiveAdmin::Inputs::*
+    def input_class_with_const_defined(as)
+      input_class_name = custom_input_class_name(as)
+
+      if ::Object.const_defined?(input_class_name)
+        input_class_name.constantize
+      elsif ActiveAdmin::Inputs.const_defined?(input_class_name)
+        active_admin_input_class_name(as).constantize
+      elsif Formtastic::Inputs.const_defined?(input_class_name)
+        standard_input_class_name(as).constantize
+      else
+        raise Formtastic::UnknownInputError, "Unable to find input class #{input_class_name}"
       end
     end
 
+    # use auto-loading in development environment
+    def input_class_by_trying(as)
+      begin
+        custom_input_class_name(as).constantize
+      rescue NameError
+        begin
+          active_admin_input_class_name(as).constantize
+        rescue NameError
+          standard_input_class_name(as).constantize
+        end
+      end
+    rescue NameError
+      raise Formtastic::UnknownInputError
+    end
+
     # This method calls the block it's passed (in our case, the `f.inputs` block)
-    # and wraps the resulting HTML in a fieldset. If your block doesn't have a
-    # valid return value but it was otherwise built correctly, we instead use
+    # and wraps the resulting HTML in a fieldset. If your block happens to return
+    # nil (but it otherwise built the form correctly), the below override passes
     # the most recent part of the Active Admin form buffer.
     def field_set_and_list_wrapping(*args, &block)
-      block_given? ? super{
-        (val = yield).is_a?(String) ? val : form_buffers.last
-      } : super
+      block_given? ? super{ yield || form_buffers.last } : super
     end
 
     private

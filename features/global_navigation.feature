@@ -1,5 +1,6 @@
 Feature: Global Navigation
 
+
   Background:
     Given a configuration of:
     """

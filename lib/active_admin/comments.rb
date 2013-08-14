@@ -32,8 +32,8 @@ ActiveAdmin.after_load do |app|
         # Register a scope for every namespace that exists.
         # The current namespace will be the default scope.
         app.namespaces.values.map(&:name).each do |name|
-          scope name, :default => namespace.name == name do |scope|
-            scope.where :namespace => name.to_s
+          scope name, :default => namespace.name == name do
+            resource_class.where :namespace => name
           end
         end
 
@@ -64,7 +64,7 @@ ActiveAdmin.after_load do |app|
           end
 
           # Define the permitted params in case the app is using Strong Parameters
-        unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+          unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
             def permitted_params
               params.permit active_admin_comment: [:body, :namespace, :resource_id, :resource_type]
             end

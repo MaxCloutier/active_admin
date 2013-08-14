@@ -4,11 +4,11 @@ module ActiveAdmin
       include FilterBase
 
       # When it's a HABTM or has_many association, Formtastic builds "object_ids".
-      # That doesn't fit our scenario, so we override it here.
+      # Metasearch requires "objects_id", hence the convoluted override.
+      #
+      # We use "_in" instead of "_eq" since it works for single or multiple values.
       def input_name
-        name = method.to_s
-        name.concat '_id' if reflection
-        name.concat multiple? ? '_in' : '_eq'
+        reflection ? "#{method}_id_in" : "#{method}_in"
       end
 
       # Include the "Any" option if it's a dropdown, but not if it's a multi-select.

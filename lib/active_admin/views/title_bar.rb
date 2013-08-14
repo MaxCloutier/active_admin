@@ -2,9 +2,11 @@ module ActiveAdmin
   module Views
     class TitleBar < Component
 
-      def build(title)
+      def build(title, action_items)
         @title = title
+        @action_items = action_items
         build_titlebar_left
+        build_titlebar_right
       end
 
       private
@@ -12,6 +14,10 @@ module ActiveAdmin
       def build_titlebar_left
           build_breadcrumb
           build_title_tag
+      end
+
+      def build_titlebar_right
+        build_action_items
       end
 
       def build_breadcrumb(separator = "/")
@@ -31,6 +37,10 @@ module ActiveAdmin
 
       def build_title_tag
         h2(@title, :id => 'page_title')
+      end
+
+      def build_action_items
+        insert_tag(view_factory.action_items, @action_items) if @action_items.any?
       end
 
     end

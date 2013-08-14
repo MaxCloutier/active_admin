@@ -14,7 +14,8 @@ require File.expand_path('../spec/support/detect_rails_version', __FILE__)
 # Import all our rake tasks
 FileList['tasks/**/*.rake'].each { |task| import task }
 
-task :default => :test
+# Run the specs & cukes using parallel_tests
+task :default => :parallel_tests
 
 begin
   require 'jasmine'

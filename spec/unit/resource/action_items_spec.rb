@@ -44,9 +44,9 @@ describe ActiveAdmin::Resource::ActionItems do
 
     it "should return only relevant action items" do
       resource.action_items_for(:index).size.should == 1
-      expect {
+      lambda {
         resource.action_items_for(:index).first.call
-      }.to raise_exception(StandardError)
+      }.should raise_exception(StandardError)
     end
 
   end

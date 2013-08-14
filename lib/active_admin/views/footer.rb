@@ -3,7 +3,7 @@ module ActiveAdmin
     class Footer < Component
 
       def tag_name
-        'footer'
+        "footer"
       end
 
       def build

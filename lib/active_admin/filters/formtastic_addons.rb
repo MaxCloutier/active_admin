@@ -24,7 +24,7 @@ module ActiveAdmin
       def column_for(method)
         klass.columns_hash[method.to_s] if klass.respond_to? :columns_hash
       end
-      
+
       def column
         column_for method
       end

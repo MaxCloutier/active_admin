@@ -30,11 +30,6 @@ module ActiveAdmin
             active_admin_application.javascripts.each do |path|
               text_node(javascript_include_tag(path))
             end
-            
-            if active_admin_application.favicon
-              text_node(favicon_link_tag(active_admin_application.favicon))
-            end
-            
             text_node csrf_meta_tag
           end
         end
@@ -45,8 +40,8 @@ module ActiveAdmin
               build_header
               build_title_bar
               build_page_content
+              build_footer
             end
-            build_footer
           end
         end
 
@@ -55,17 +50,15 @@ module ActiveAdmin
         end
 
         def build_title_bar
-          insert_tag view_factory.title_bar, title
+          insert_tag view_factory.title_bar, title, action_items_for_action
         end
 
 
         def build_page_content
           build_flash_messages
-          #div :class => "active_admin_content " + (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
-          div :class => "active_admin_content" do
-            build_nav_menu
+          div :class => "clearfix active_admin_content " + (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
             build_main_content_wrapper
-           # build_sidebar unless skip_sidebar?
+            build_sidebar unless skip_sidebar?
           end
         end
 
@@ -80,18 +73,9 @@ module ActiveAdmin
         def build_main_content_wrapper
           div :class => "main_content_wrapper" do
             div :class => "main_content" do
-              build_action_items
               main_content
             end
           end
-        end
-
-        def build_action_items
-          insert_tag(view_factory.action_items, action_items_for_action) if action_items_for_action.any?
-        end
-
-        def build_nav_menu
-            insert_tag view_factory.nav_menu, active_admin_namespace, current_menu
         end
 
         def main_content

@@ -135,11 +135,6 @@ module ActiveAdmin
       @csv_builder || default_csv_builder
     end
 
-    def find_resource(id)
-      resource = resource_class.where(resource_class.primary_key => id).first
-      decorator_class ? decorator_class.new(resource) : resource
-    end
-
     # @deprecated
     def resource
       resource_class
