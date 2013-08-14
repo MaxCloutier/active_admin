@@ -6,7 +6,6 @@ module ActiveAdmin
         @title = title
         @action_items = action_items
         build_titlebar_left
-        build_titlebar_right
       end
 
       private
@@ -14,10 +13,6 @@ module ActiveAdmin
       def build_titlebar_left
           build_breadcrumb
           build_title_tag
-      end
-
-      def build_titlebar_right
-        build_action_items
       end
 
       def build_breadcrumb(separator = "/")

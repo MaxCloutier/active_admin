@@ -73,10 +73,15 @@ module ActiveAdmin
 
         def build_main_content_wrapper
           #div :class => "main_content_wrapper" do
+            build_action_items
             div :class => "main_content" do
               main_content
             end
           #end
+        end
+
+        def build_action_items
+          insert_tag(view_factory.action_items, action_items_for_action) if action_items_for_action.any?
         end
 
         def build_nav_menu
