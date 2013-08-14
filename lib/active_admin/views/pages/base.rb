@@ -62,10 +62,11 @@ module ActiveAdmin
         def build_page_content
           build_flash_messages
           #div :class => "active_admin_content " + (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
+          div :class => "active_admin_content" do
             build_nav_menu
             build_main_content_wrapper
            # build_sidebar unless skip_sidebar?
-          #end
+          end
         end
 
         def build_flash_messages
