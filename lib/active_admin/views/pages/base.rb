@@ -38,8 +38,11 @@ module ActiveAdmin
           within @body do
             div :class => "wrapper" do
               build_header
-              build_title_bar
-              build_page_content
+              build_nav_menu
+              div :class => "right-side" do
+                build_title_bar
+                build_page_content
+              end
               build_footer
             end
           end
@@ -58,7 +61,6 @@ module ActiveAdmin
           build_flash_messages
           # div :class => "clearfix active_admin_content " + (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
           #div :class => "clearfix active_admin_content" do
-            build_nav_menu
             build_main_content_wrapper
           #end
         end
