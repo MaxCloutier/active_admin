@@ -40,6 +40,7 @@ module ActiveAdmin
               build_header
               build_nav_menu
               div :class => "right-side" do
+                build_action_items
                 build_title_bar
                 build_page_content
               end
@@ -75,7 +76,6 @@ module ActiveAdmin
 
         def build_main_content_wrapper
           #div :class => "main_content_wrapper" do
-            build_action_items
             div :class => "main_content" do
               main_content
             end
